@@ -26,14 +26,14 @@ static_resources:
           http_filters:
           - name: envoy.filters.http.oauth2
             typed_config:
-              "@type": type.googleapis.com/envoy.extensions.filters.http.oauth2.v3alpha.OAuth2
+              "@type": type.googleapis.com/envoy.extensions.filters.http.oauth2.v3.OAuth2
               config:
                 token_endpoint:
                   cluster: google-oauth2-token
                   uri: https://oauth2.googleapis.com/token
                   timeout: 3s
                 authorization_endpoint: https://accounts.google.com/o/oauth2/v2/auth
-                redirect_uri: https://vincent-haupert.de/oauth2/callback
+                redirect_uri: http://localhost:40080/oauth2/callback
                 redirect_path_matcher:
                   path:
                     exact: /oauth2/callback
@@ -41,7 +41,7 @@ static_resources:
                   path:
                     exact: /oauth2/signout
                 credentials:
-                  client_id: "544645505391-67rridbtgfhuicudis85onpc054qb7qu.apps.googleusercontent.com"
+                  client_id: "<client id>"
                   token_secret:
                     name: token
                     sds_config:
